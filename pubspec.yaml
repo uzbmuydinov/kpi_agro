@@ -1,0 +1,72 @@
+name: kpi_ndqxai
+description: KPI sysetm from ANDQXAI
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # for UI
+  cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.5.4
+  lottie: ^1.4.2
+  fluttertoast: ^8.0.9
+  curved_navigation_bar: ^1.0.3
+  animate_do: ^2.1.0
+  google_nav_bar: ^5.0.6
+  shimmer:
+
+  get: ^4.6.5
+  get_storage: ^2.0.3
+  dio: ^4.0.6
+
+  intl: ^0.17.0
+  connectivity_plus: ^2.3.8
+  path_provider: ^2.0.11
+  logger: ^1.1.0
+  image_picker: ^0.8.5+3
+  gallery_saver: ^2.3.2
+  jwt_decoder: ^2.0.1
+
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/lottie_animations/
+
+
+  fonts:
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Ubuntu-Regular.ttf
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
