@@ -1,4 +1,5 @@
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -10,6 +11,8 @@ import 'package:kpi_ndqxai/pages/user_home_page/user_home_controller.dart';
 import 'package:kpi_ndqxai/pages/user_home_page/user_home_page.dart';
 import 'package:kpi_ndqxai/pages/user_profile_page/user_profile_controller.dart';
 import 'package:kpi_ndqxai/pages/user_profile_page/user_profile_page.dart';
+import 'package:kpi_ndqxai/services/log_service.dart';
+import 'package:logger/logger.dart';
 
 import 'add_task_page/add_task_controller.dart';
 
@@ -21,15 +24,36 @@ class ManageGoogleNavBar extends StatefulWidget {
 }
 
 class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
+  bool isConnected =false;
+  var subscription;
+
   void initState() {
+    checkNetvork();
     Get.find<AddtaskController>();
     Get.find<UserProfileController>();
     Get.find<UserHomePageController>();
     Get.find<SendedTasksController>();
+
+    subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      debugPrint("Interet ahvoli :$result");
+      if (result!=ConnectivityResult.none){
+        setState(() {
+          isConnected=true;
+          checkNetvork();
+        });
+      }
+      // Got a new connectivity status!
+    });
     super.initState();
   }
 
-
+void checkNetvork(){
+    if(isConnected==false){
+      LogService.e("Internet yo'q");
+      SnackBar(content: Text("Tarmoq yo'q"),shape: RoundedRectangleBorder());
+      Get.snackbar("Internet uzildi", "Internet uzildi. Tarmoqni tekshiring", snackPosition: SnackPosition.BOTTOM);
+    }
+}
 
   static const List<Widget> _widgetOptions = <Widget>[
     UserHomePage(),
@@ -42,6 +66,7 @@ class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
   Widget build(BuildContext context) {
     return GetBuilder<ManagePageGoogleNavbarController>(builder: (controller) {
       return Scaffold(
+
         backgroundColor: Colors.white,
         body: Center(
           child: _widgetOptions.elementAt(controller.selectedIndex),
@@ -98,6 +123,7 @@ class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
             ),
           ),
         ),
+
       );
     });
   }

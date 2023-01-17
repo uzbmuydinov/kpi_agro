@@ -10,6 +10,10 @@ import 'package:kpi_ndqxai/pages/user_profile_page/user_profile_page.dart';
 class ManagePageGoogleNavbarController extends GetxController {
   int selectedIndex = 0;
 
+  // for check network
+
+
+
   static const List<Widget> widgetOptions = <Widget>[
     UserHomePage(),
     AddTaskPage(),
