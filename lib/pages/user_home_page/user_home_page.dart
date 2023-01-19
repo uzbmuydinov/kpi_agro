@@ -25,9 +25,8 @@ class _UserHomePageState extends State<UserHomePage> {
 
         // asosiy qism
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 120.h, left: 15, top: 35, right: 15),
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
+          padding: EdgeInsets.only(bottom: 120.h, left: 15, top: 40, right: 15),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

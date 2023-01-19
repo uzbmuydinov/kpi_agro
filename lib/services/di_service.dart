@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:kpi_ndqxai/pages/add_task_page/add_task_controller.dart';
+import 'package:kpi_ndqxai/pages/checkForUpdate.dart';
 import 'package:kpi_ndqxai/pages/login_page/login_page_controller.dart';
 import 'package:kpi_ndqxai/pages/manage_page_googleNavbar_controller.dart';
 import 'package:kpi_ndqxai/pages/sendedTask/sendedTask_controller.dart';
@@ -19,6 +20,7 @@ class DIService implements Bindings {
     Get.lazyPut<LoginPageController>(() => LoginPageController(), fenix: true);
     Get.lazyPut<SplashController>(() => SplashController(), fenix: true);
     Get.lazyPut<TaskStatusController>(() => TaskStatusController(), fenix: true);
+
 
     Get.lazyPut<ManagePageGoogleNavbarController>(() => ManagePageGoogleNavbarController(), fenix: true);
     //Get.lazyPut<EmployeeController>(() => EmployeeController(), fenix: true);

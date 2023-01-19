@@ -3,6 +3,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:kpi_ndqxai/pages/add_task_page/add_task_page.dart';
 import 'package:kpi_ndqxai/pages/manage_page_googleNavbar_controller.dart';
 import 'package:kpi_ndqxai/pages/sendedTask/sendedTask_controller.dart';
@@ -26,6 +27,42 @@ class ManageGoogleNavBar extends StatefulWidget {
 class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
   bool isConnected =false;
   var subscription;
+  // for check update
+  AppUpdateInfo? _updateInfo;
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+  bool _flexibleUpdateAvailable = false;
+
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((updateInfo) {
+
+      if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+        if (updateInfo.immediateUpdateAllowed) {
+          // Perform immediate update
+          InAppUpdate.performImmediateUpdate().then((appUpdateResult) {
+            if (appUpdateResult == AppUpdateResult.success) {
+              //App Update successful
+            }
+          });
+        } else if (updateInfo.flexibleUpdateAllowed) {
+          //Perform flexible update
+          InAppUpdate.startFlexibleUpdate().then((appUpdateResult) {
+            if (appUpdateResult == AppUpdateResult.success) {
+              //App Update successful
+              InAppUpdate.completeFlexibleUpdate();
+            }
+          });
+        }
+      }
+    });
+  }
+
+  void showSnack(String text) {
+    if (_scaffoldKey.currentContext != null) {
+      ScaffoldMessenger.of(_scaffoldKey.currentContext!)
+          .showSnackBar(SnackBar(content: Text(text)));
+    }
+  }
 
   void initState() {
     checkNetvork();
@@ -42,7 +79,6 @@ class _ManageGoogleNavBarState extends State<ManageGoogleNavBar> {
           checkNetvork();
         });
       }
-      // Got a new connectivity status!
     });
     super.initState();
   }

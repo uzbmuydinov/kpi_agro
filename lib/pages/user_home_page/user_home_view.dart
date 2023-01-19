@@ -75,7 +75,7 @@ class AppBarHomePageCustom extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /*SizedBox(
+              SizedBox(
                 child: controller.isLoading == true
                     ? Shimmer.fromColors(
                     baseColor: Colors.grey.shade400,
@@ -91,29 +91,13 @@ class AppBarHomePageCustom extends StatelessWidget {
                   "${controller.userInfo?.firstName} ${controller.userInfo?.lastName}",
                   style: AppColors.bukvalni,
                 ),
-              ),*/
-              SizedBox(
-                child: controller.isLoading == true
-                    ? Shimmer.fromColors(
-                    baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.grey.shade200,
-                    child: Container(
-                      height: 30.h,
-                      width: 250.w,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(8)),
-                    ))
-                    : Text(
-                  "Mo'minjon Mo'ydinov",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
               ),
+
               SizedBox(
                 height: 8.h,
               ),
               // for mail
-           /*   SizedBox(
+              SizedBox(
                 child: controller.isLoading == true
                     ? Shimmer.fromColors(
                     baseColor: Colors.grey.shade400,
@@ -129,25 +113,9 @@ class AppBarHomePageCustom extends StatelessWidget {
                   "${controller.userInfo?.email}",
                   style: AppColors.kulrangMatn,
                 ),
-              ),*/
-
-              SizedBox(
-                child: controller.isLoading == true
-                    ? Shimmer.fromColors(
-                    baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.grey.shade200,
-                    child: Container(
-                      height: 30.h,
-                      width: 150.w,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(8)),
-                    ))
-                    : Text(
-                  "uzbflutterdeveloper@gmail.com",
-                  style: TextStyle(fontSize: 15, ),
-                ),
               ),
+
+
             ],
           )
         ],

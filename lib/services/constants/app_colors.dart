@@ -5,7 +5,8 @@ class AppColors {
   /// #Main Color
   static const Color mainWhiteColor = Color(0xFFFFFFFF);
   static const Color mainBackgroundColor = Color(0xFFF7F7F7);
-  static const Color mainColorGreen = Color(0xFF54CFA1);
+  //static const Color mainColorGreen = Color(0xFF54CFA1);
+  static const Color mainColorGreen = Color(0xFF107D42);
   static const Color mainColorBlack = Color(0xFF000000);
 
   /// #Sub Colors

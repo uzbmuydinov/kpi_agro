@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         return Scaffold(
           backgroundColor: AppColors.mainBackgroundColor,
           body: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
             child: Stack(
               children: [
                 SizedBox(
