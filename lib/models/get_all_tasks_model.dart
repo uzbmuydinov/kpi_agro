@@ -1,43 +1,43 @@
 import 'dart:convert';
 
-List<GetTaskModel?>? getTaskModelFromJson(String str) => json.decode(str) == null ? [] : List<GetTaskModel?>.from(json.decode(str)!.map((x) => GetTaskModel.fromJson(x)));
+List<GetAllTasksModel> getAllTasksModelFromJson(String str) => List<GetAllTasksModel>.from(json.decode(str).map((x) => GetAllTasksModel.fromJson(x)));
 
-String getTaskModelToJson(List<GetTaskModel?>? data) => json.encode(data == null ? [] : List<dynamic>.from(data.map((x) => x!.toJson())));
+String getAllTasksModelToJson(List<GetAllTasksModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class GetTaskModel {
-  GetTaskModel({
-    this.id,
-    this.title,
-    this.description,
+class GetAllTasksModel {
+  GetAllTasksModel({
+    required this.id,
+    required this.title,
+    required this.description,
     this.filename,
-    this.status,
-    this.flow,
-    this.deadline,
+    required this.status,
+    required this.flow,
+    required this.deadline,
     this.acceptedAt,
-    this.createdAt,
+    required this.createdAt,
     this.finishedAt,
-    this.difficulty,
-    this.priority,
-    this.from,
-    this.tos,
+    required this.difficulty,
+    required this.priority,
+    required this.from,
+    required this.tos,
   });
 
-  int? id;
-  String? title;
-  String? description;
+  int id;
+  String title;
+  String description;
   dynamic filename;
-  String? status;
-  String? flow;
-  DateTime? deadline;
-  DateTime? acceptedAt;
-  DateTime? createdAt;
+  String status;
+  String flow;
+  DateTime deadline;
+  dynamic acceptedAt;
+  DateTime createdAt;
   dynamic finishedAt;
-  int? difficulty;
-  String? priority;
-  From? from;
-  List<From?>? tos;
+  int difficulty;
+  String priority;
+  From from;
+  List<From> tos;
 
-  factory GetTaskModel.fromJson(Map<String, dynamic> json) => GetTaskModel(
+  factory GetAllTasksModel.fromJson(Map<String, dynamic> json) => GetAllTasksModel(
     id: json["id"],
     title: json["title"],
     description: json["description"],
@@ -45,13 +45,13 @@ class GetTaskModel {
     status: json["status"],
     flow: json["flow"],
     deadline: DateTime.parse(json["deadline"]),
-    acceptedAt: DateTime.parse(json["acceptedAt"]),
+    acceptedAt: json["acceptedAt"],
     createdAt: DateTime.parse(json["createdAt"]),
     finishedAt: json["finishedAt"],
     difficulty: json["difficulty"],
     priority: json["priority"],
     from: From.fromJson(json["from"]),
-    tos: json["tos"] == null ? [] : List<From?>.from(json["tos"]!.map((x) => From.fromJson(x))),
+    tos: List<From>.from(json["tos"].map((x) => From.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -61,33 +61,33 @@ class GetTaskModel {
     "filename": filename,
     "status": status,
     "flow": flow,
-    "deadline": deadline?.toIso8601String(),
-    "acceptedAt": acceptedAt?.toIso8601String(),
-    "createdAt": createdAt?.toIso8601String(),
+    "deadline": deadline.toIso8601String(),
+    "acceptedAt": acceptedAt,
+    "createdAt": createdAt.toIso8601String(),
     "finishedAt": finishedAt,
     "difficulty": difficulty,
     "priority": priority,
-    "from": from!.toJson(),
-    "tos": tos == null ? [] : List<dynamic>.from(tos!.map((x) => x!.toJson())),
+    "from": from.toJson(),
+    "tos": List<dynamic>.from(tos.map((x) => x.toJson())),
   };
 }
 
 class From {
   From({
-    this.id,
+    required this.id,
     this.username,
-    this.firstname,
-    this.lastname,
+    required this.firstname,
+    required this.lastname,
     this.fathername,
     this.position,
     this.department,
     this.password,
   });
 
-  int? id;
+  int id;
   dynamic username;
-  String? firstname;
-  String? lastname;
+  String firstname;
+  String lastname;
   dynamic fathername;
   dynamic position;
   dynamic department;
