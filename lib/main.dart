@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:kpi_ndqxai/pages/login_page/login_page.dart';
 import 'package:kpi_ndqxai/pages/manage_page_googleNavbar.dart';
 import 'package:kpi_ndqxai/services/di_service.dart';
 import 'package:kpi_ndqxai/services/lang_service.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(fontFamily: "Mulish"),
         initialBinding: DIService(),
 
-        home: ManageGoogleNavBar(),
+        home: LoginPage(),
         //translations: LangService(),
         //locale: LangService.locale,
         fallbackLocale: LangService.fallbackLocale,
