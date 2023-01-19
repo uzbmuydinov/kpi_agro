@@ -243,4 +243,3 @@ class NetworkService {
     var result = GetTaskModel.fromJson(decodedJson);
     return result;
   }
-}
