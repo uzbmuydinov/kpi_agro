@@ -35,7 +35,7 @@ class _TabControlState extends State<TabControl> {
               controller: controller.pageControl,
               scrollDirection: Axis.vertical,
               children: const [
-                UncompeletedTask(),
+                UnCompletedTask(),
                 CompletedTask(),
                 BarchaTopshiriqlar()
               ],

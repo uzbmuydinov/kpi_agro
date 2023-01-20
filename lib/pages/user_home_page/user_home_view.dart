@@ -266,7 +266,7 @@ Widget buildListTile() {
       builder: (controller) {
         return RefreshIndicator(
           onRefresh: () async {
-            await controller.getAllTasks;
+           // await controller.getAllTasks;
           },
           child: ListView.builder(
               controller: controller.scrollController,
@@ -359,7 +359,7 @@ Widget AllTasks() {
       builder: (controller) {
         return RefreshIndicator(
           onRefresh: () async {
-            await controller.getAllTasks;
+            //await controller.getAllTasks;
           },
           child: ListView.builder(
               controller: controller.scrollController,

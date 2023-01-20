@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kpi_ndqxai/models/all_task_model.dart';
+import 'package:kpi_ndqxai/models/get_all_tasks_model.dart';
 import 'package:kpi_ndqxai/models/my_account_info.dart';
 import 'package:kpi_ndqxai/models/user_info.dart';
 import 'package:kpi_ndqxai/services/api_service.dart';
@@ -21,6 +22,7 @@ class UserHomePageController extends GetxController {
   UserInfo? userInfo;
   MyAccountInfo userHomeModel = DBService.to.getMyAccoountInfo();
   List<AllTaskList> barchaTopshiriqlar=[];
+  List<GetTaskModel?>? getTaskModelList=[];
   List<String> allGroups = <String>["Barchasi","Odatiy","Shoshilinch"];
   String status = "Topshiriq kategoryalari";
   ScrollController scrollController = ScrollController();
@@ -87,14 +89,15 @@ class UserHomePageController extends GetxController {
     isLoading = true;
     update();
     try {
-      var response = await NetworkService.GET(
-          ApiService.GET_ALL_TASKS, ApiService.paramsEmpty());
+      var response = await NetworkService.GET(ApiService.GET_ALL_TASKS, ApiService.paramsEmpty());
+      Logger().w('response  ------  --------  -------- --------  $response');
       if (response != null) {
 
-        var result = NetworkService.parseResult(response);
-
-        barchaTopshiriqlar =allTaskListFromJson(jsonEncode(result));
-        Logger().wtf("Mana topshiriqlar matni   ${barchaTopshiriqlar.first.title}");
+        var result = parseResult(response);
+        getTaskModelList = result;
+        //Logger().wtf('description  ${result?.first?.description}');
+      //  barchaTopshiriqlar =allTaskListFromJson(jsonEncode(result));
+        // Logger().wtf("Mana topshiriqlar matni   ${barchaTopshiriqlar.first.title}");
         update();
       } else {
         Utils.fireToast("try_again".tr);
@@ -104,6 +107,14 @@ class UserHomePageController extends GetxController {
     }
     isLoading = false;
     update();
+  }
+
+  List<GetTaskModel?>? parseResult(String? response) {
+    if(response != null){
+      var getTaskModelList = getTaskModelFromJson(response);
+      return getTaskModelList;
+    }
+    return null;
   }
 
 /*  Future<void> getDataUserPage() async {

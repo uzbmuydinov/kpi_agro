@@ -47,7 +47,7 @@ class _UserHomePageState extends State<UserHomePage> {
                             Get.find<TaskStatusController>().tabController,
                         physics: const NeverScrollableScrollPhysics(),
                         children: const [
-                      UncompeletedTask(),
+                      UnCompletedTask(),
                       CompletedTask(),
                       BarchaTopshiriqlar()
                     ])),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
+import 'package:logger/logger.dart';
 import '../models/get_all_tasks_model.dart';
 import 'db_service.dart';
 import 'log_service.dart';
@@ -238,9 +239,5 @@ class NetworkService {
 
   /// /* Parsing */
 
-  static GetTaskModel parseResult(String response) {
-    dynamic decodedJson = jsonDecode(response);
-    var result = GetTaskModel.fromJson(decodedJson);
-    return result;
-  }
+
 }
