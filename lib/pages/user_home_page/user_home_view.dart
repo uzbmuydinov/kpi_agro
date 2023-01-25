@@ -2,13 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:kpi_ndqxai/pages/task_detail_page/task_detail_view.dart';
 import 'package:kpi_ndqxai/pages/user_home_page/cardModel.dart';
 import 'package:kpi_ndqxai/pages/user_home_page/taskStatus/taskStatus_controller.dart';
 import 'package:kpi_ndqxai/pages/user_home_page/user_home_controller.dart';
-
 import 'package:kpi_ndqxai/services/constants/app_colors.dart';
-import 'package:kpi_ndqxai/views/show_alert_dialog.dart';
 import 'package:shimmer/shimmer.dart';
 
 Widget dropDownButtonForHomePage(UserHomePageController controller,
@@ -57,15 +54,15 @@ class AppBarHomePageCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<UserHomePageController>(builder: (controller) {
-      return  Row(
+      return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           CircleAvatar(
             child: Container(
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(
-                        color: AppColors.mainColorGreen, width: 3))),
+                    border:
+                        Border.all(color: AppColors.mainColorGreen, width: 3))),
             backgroundImage: AssetImage("assets/images/unnamed.jpg"),
             radius: 30.r,
           ),
@@ -78,19 +75,19 @@ class AppBarHomePageCustom extends StatelessWidget {
               SizedBox(
                 child: controller.isLoading == true
                     ? Shimmer.fromColors(
-                    baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.grey.shade200,
-                    child: Container(
-                      height: 30.h,
-                      width: 250.w,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(8)),
-                    ))
+                        baseColor: Colors.grey.shade400,
+                        highlightColor: Colors.grey.shade200,
+                        child: Container(
+                          height: 30.h,
+                          width: 250.w,
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(8)),
+                        ))
                     : Text(
-                  "${controller.userInfo?.firstName} ${controller.userInfo?.lastName}",
-                  style: AppColors.bukvalni,
-                ),
+                        "${controller.userInfo?.firstName} ${controller.userInfo?.lastName}",
+                        style: AppColors.bukvalni,
+                      ),
               ),
 
               SizedBox(
@@ -100,22 +97,20 @@ class AppBarHomePageCustom extends StatelessWidget {
               SizedBox(
                 child: controller.isLoading == true
                     ? Shimmer.fromColors(
-                    baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.grey.shade200,
-                    child: Container(
-                      height: 30.h,
-                      width: 150.w,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(8)),
-                    ))
+                        baseColor: Colors.grey.shade400,
+                        highlightColor: Colors.grey.shade200,
+                        child: Container(
+                          height: 30.h,
+                          width: 150.w,
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(8)),
+                        ))
                     : Text(
-                  "${controller.userInfo?.email}",
-                  style: AppColors.kulrangMatn,
-                ),
+                        "${controller.userInfo?.email}",
+                        style: AppColors.kulrangMatn,
+                      ),
               ),
-
-
             ],
           )
         ],
@@ -123,7 +118,6 @@ class AppBarHomePageCustom extends StatelessWidget {
     });
   }
 }
-
 
 // Todo Bu eski UI Ish bitgach o'chirib tashla
 List<CardModel> cardElements = [
@@ -143,14 +137,8 @@ List<CardModel> cardElements = [
       "Shoshilinch",
       "12/12/2022",
       7),
-  CardModel(
-      "Sed ut perspiciatis",
-      "Nemo enim ipsam",
-      "Tezlashtirilar",
-      true,
-      "Shoshilinch",
-      "12/12/2022",
-      7),
+  CardModel("Sed ut perspiciatis", "Nemo enim ipsam", "Tezlashtirilar", true,
+      "Shoshilinch", "12/12/2022", 7),
   CardModel(
       "Nemo enim ipsam voluptatem, quia voluptas sit",
       "Mo'minjon",
@@ -160,291 +148,6 @@ List<CardModel> cardElements = [
       "12/12/2022",
       7),
 ];
-
-Widget buildCustomcard() {
-  return GetBuilder<UserHomePageController>(
-      builder: (controller) {
-        return Column(
-          children: [
-            // task card
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: controller.barchaTopshiriqlar.length,
-                itemBuilder: (context, index) {
-                  return itemOfCard(index);
-                })
-          ],
-        );
-      });
-}
-
-Card itemOfCard(int index) {
-  return Card(
-
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: Container(
-      height: 160.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Container(
-        padding:
-        const EdgeInsets.only(left: 15, bottom: 15, top: 15, right: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.r), color: Colors.white),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // # product_name
-
-                    SizedBox(
-                      width: 300.w,
-                      child: Text(cardElements[index].topshiriqNomi!,
-                          style: AppColors.cardHeadStyle,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2),
-                    ),
-
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    SizedBox(
-                      width: 300.w,
-                      child: Text(
-                        cardElements[index].tavsif!,
-                        style: AppColors.kulrangMatn,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                // product like
-                CircleAvatar(
-                    backgroundColor: cardElements[index].bajarildimi
-                        ? Colors.red
-                        : AppColors.mainColorGreen,
-                    maxRadius: 12.r),
-              ],
-            ),
-            SizedBox(height: 15.h),
-
-            // bu yerda narx bor edi
-            SizedBox(
-                width: 100.w,
-                child: Text(
-                  cardElements[index].muhlat!,
-                  style: AppColors.kulrangMatn,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                )),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-//customListTile
-Widget buildListTile() {
-  return GetBuilder<UserHomePageController>(
-      builder: (controller) {
-        return RefreshIndicator(
-          onRefresh: () async {
-           // await controller.getAllTasks;
-          },
-          child: ListView.builder(
-              controller: controller.scrollController,
-              padding: EdgeInsets.zero,
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              shrinkWrap: true,
-              itemCount: controller.barchaTopshiriqlar.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 118.h,
-                  margin: EdgeInsets.only(
-                    bottom: 15.h,
-                  ),
-                  padding: EdgeInsets.all(10.r),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.r)),
-                  child: InkWell(
-                    onTap: () =>
-                        Get.to(() =>
-                            TaskDetailElement(
-                              taskList: controller.barchaTopshiriqlar[index],
-                            ),
-                          transition: Transition.fadeIn,
-                          duration: const Duration(milliseconds: 150),
-                        ),
-                    onLongPress: () {
-                      showEditAndDeleteDialog(
-                          context: context,
-                          title: "want_to_edit_or_delete".tr,
-                          //delete: controller.deleteNotice,
-                          //edit: controller.goToEditPage,
-                          argument: controller.barchaTopshiriqlar[index],
-                          id: controller.barchaTopshiriqlar[index].id);
-                    },
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  controller.barchaTopshiriqlar[index].title!,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 17.sp,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Text(
-                                  controller.barchaTopshiriqlar[index]
-                                      .description!,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 13.sp,
-                                    color: AppColors.colorTextLightGrey,
-                                  ),
-                                ),
-                              ],
-                            )),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-
-                            Text(
-                              controller.barchaTopshiriqlar[index].createdAt
-                                  .toString()
-                                  .substring(0, 16),
-                              style: TextStyle(
-                                  fontSize: 13.sp, fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-        );
-      });
-}
-
-// barcha topshiriqlar shu yerga kirib keladi
-Widget AllTasks() {
-  return GetBuilder<UserHomePageController>(
-      builder: (controller) {
-        return RefreshIndicator(
-          onRefresh: () async {
-            //await controller.getAllTasks;
-          },
-          child: ListView.builder(
-              controller: controller.scrollController,
-              padding: EdgeInsets.zero,
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              shrinkWrap: true,
-              itemCount: controller.barchaTopshiriqlar.length,
-              //itemCount: 3,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: 118.h,
-                  margin: EdgeInsets.only(
-                    bottom: 15.h,
-                  ),
-                  padding: EdgeInsets.all(10.r),
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.r)),
-                  child: InkWell(
-                    onTap: () =>
-                        Get.to(() =>
-                            TaskDetailElement(
-                              taskList: controller.barchaTopshiriqlar[index],
-                            ),
-                          transition: Transition.fadeIn,
-                          duration: const Duration(milliseconds: 150),
-                        ),
-                    onLongPress: () {
-                      showEditAndDeleteDialog(
-                          context: context,
-                          title: "want_to_edit_or_delete".tr,
-                          //delete: controller.deleteNotice,
-                          //edit: controller.goToEditPage,
-                          argument: controller.barchaTopshiriqlar[index],
-                          id: controller.barchaTopshiriqlar[index].id);
-                    },
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "controller.barchaTopshiriqlar[index].title!",
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 17.sp,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Text(
-                                  "controller.barchaTopshiriqlar[index].description!",
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 13.sp,
-                                    color: AppColors.colorTextLightGrey,
-                                  ),
-                                ),
-                              ],
-                            )),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-
-                            Text(
-                              "controller.barchaTopshiriqlar[index].createdAt"
-                                  .toString()
-                                  .substring(0, 16),
-                              style: TextStyle(
-                                  fontSize: 13.sp, fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-        );
-      });
-}
 
 class TabBarCustom extends StatelessWidget {
   const TabBarCustom({Key? key}) : super(key: key);

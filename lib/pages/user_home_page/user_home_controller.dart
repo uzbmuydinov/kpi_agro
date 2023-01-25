@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kpi_ndqxai/models/all_task_model.dart';
@@ -21,12 +20,15 @@ class UserHomePageController extends GetxController {
   int totalElements=0;
   UserInfo? userInfo;
   MyAccountInfo userHomeModel = DBService.to.getMyAccoountInfo();
-  List<AllTaskList> barchaTopshiriqlar=[];
+
   List<GetTaskModel?>? getTaskModelList=[];
+  List<GetTaskModel?>? completedTaskList=[];
+  List<GetTaskModel?>? AllTaskList=[];
   List<String> allGroups = <String>["Barchasi","Odatiy","Shoshilinch"];
   String status = "Topshiriq kategoryalari";
   ScrollController scrollController = ScrollController();
   // statusni almashtirish uchun dropdown funksiyasi
+
   void changeStatus(String? newValue) {
     status = newValue ?? status;
     update();
@@ -52,38 +54,6 @@ class UserHomePageController extends GetxController {
   }
 
 
-  /*Future<void> getAllTasks({int? newPageNumber}) async {
-    if (pageNumber == 0) {
-      isLoading = true;
-      update();
-    }
-    if (newPageNumber != null) {
-      pageNumber = newPageNumber;
-    }
-    try {
-      var response = await NetworkService.GET(
-          ApiService.GET_ALL_TASKS, ApiService.paramsPagination(pageNumber));
-      if (response != null) {
-        var result = NetworkService.parseResult(response);
-        totalElements = result.totalElement!;
-        if (pageNumber != 0) {
-          barchaTopshiriqlar.addAll(allTaskListFromJson(jsonEncode(result.object)));
-        } else {
-          barchaTopshiriqlar = allTaskListFromJson(jsonEncode(result.object));
-        }
-        pageNumber++;
-        update();
-      }
-    } on TimeoutException {
-
-    }
-    isLoading = false;
-    update();
-  }*/
-
-
-
-  ///function for get all brithday
 
   void getAllTasks() async {
     isLoading = true;
@@ -98,6 +68,28 @@ class UserHomePageController extends GetxController {
         //Logger().wtf('description  ${result?.first?.description}');
       //  barchaTopshiriqlar =allTaskListFromJson(jsonEncode(result));
         // Logger().wtf("Mana topshiriqlar matni   ${barchaTopshiriqlar.first.title}");
+        update();
+      } else {
+        Utils.fireToast("try_again".tr);
+      }
+    } on TimeoutException {
+      Utils.fireToast("try_again".tr);
+    }
+    isLoading = false;
+    update();
+  }
+
+  void getCompletedTasks() async {
+    isLoading = true;
+    update();
+    try {
+      var response = await NetworkService.GET(ApiService.GET_ALL_TASKS, ApiService.paramsEmpty());
+      Logger().w('response  ------  --------  -------- --------  $response');
+      if (response != null) {
+
+        var result = parseResult(response);
+        getTaskModelList = result;
+
         update();
       } else {
         Utils.fireToast("try_again".tr);

@@ -12,6 +12,7 @@ class ApiService {
   //static const String GET_ALL_TASKS = '/api/tasks?page=0&size=20'; // PAGINATION
   static const String GET_ALL_TASKS = '/api/tasks/'; // WITHOUT PAGINATION
   static const String GET_ALL_EMPLOYEES = '/api/employees'; // WITHOUT PAGINATION
+  static const String GET_CURRENT_PROFILE = '/api/employees/current'; // WITHOUT PAGINATION
 
 
 

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,16 +16,15 @@ class UserAccountPage extends StatefulWidget {
 class _UserAccountPageState extends State<UserAccountPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UserProfileController>(builder: (controller) {
+    return GetBuilder<UserProfileController>(
+        builder: (controller) {
       return Scaffold(
         backgroundColor: AppColors.mainBackgroundColor,
         // asosiy qism
         body: SingleChildScrollView(
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Container(
                 height: MediaQuery.of(context).size.height * 0.37,
                 width: double.infinity,
@@ -38,7 +35,6 @@ class _UserAccountPageState extends State<UserAccountPage> {
                         colors: <Color>[
                           Color(0xff099773),
                           Color(0xff66f1c4),
-
                         ]),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(40),
@@ -58,20 +54,36 @@ class _UserAccountPageState extends State<UserAccountPage> {
                     ),
                     SizedBox(height: 15.h),
                     Text(
-                      "Mo'minjon Mo'ydinov", style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                      "Mo'minjon Mo'ydinov",
+                     //"controller.myAccountInfoList.first.firstName!",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 5.h,),
-                    Text(
-                      "Muhandis dasturchi", style: TextStyle(color: Colors.white, fontSize: 18, ),
+                    SizedBox(
+                      height: 5.h,
                     ),
-                    SizedBox(height: 7.h,),
                     Text(
-                      "uzbflutterdeveloper@gmail.com", style: TextStyle(color: Colors.white, fontSize: 14, ),
+                      "Muhandis dasturchi",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 7.h,
+                    ),
+                    Text(
+                      "uzbflutterdeveloper@gmail.com",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
               ),
-
               const UserFunction()
             ],
           ),

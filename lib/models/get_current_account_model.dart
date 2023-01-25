@@ -17,13 +17,13 @@ class GetCurrentAccountModel {
   });
 
   int id;
-  String username;
-  String firstname;
-  String lastname;
-  String fathername;
-  Department position;
-  Department department;
-  dynamic password;
+  String? username;
+  String? firstname;
+  String? lastname;
+  String? fathername;
+  Department? position;
+  Department? department;
+  dynamic? password;
 
   factory GetCurrentAccountModel.fromJson(Map<String, dynamic> json) => GetCurrentAccountModel(
     id: json["id"],
@@ -42,8 +42,8 @@ class GetCurrentAccountModel {
     "firstname": firstname,
     "lastname": lastname,
     "fathername": fathername,
-    "position": position.toJson(),
-    "department": department.toJson(),
+    "position": position?.toJson(),
+    "department": department?.toJson(),
     "password": password,
   };
 }

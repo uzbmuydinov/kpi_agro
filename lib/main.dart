@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:kpi_ndqxai/pages/login_page/login_page.dart';
 import 'package:kpi_ndqxai/pages/manage_page_googleNavbar.dart';
+import 'package:kpi_ndqxai/pages/splash_page/splash_page.dart';
 import 'package:kpi_ndqxai/services/di_service.dart';
 import 'package:kpi_ndqxai/services/lang_service.dart';
 import 'package:kpi_ndqxai/services/root_service.dart';
